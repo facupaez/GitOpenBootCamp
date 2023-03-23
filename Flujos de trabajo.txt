@@ -1,0 +1,42 @@
+Work flow local:
+
+update > change > review > commit
+
+
+Forking work flow:
+
+1- Forkear un repo al que no tengamos permisos de edicion pero que querramos contribuir.
+Fork: clonar un repositorio de un tercero a mi cuenta de usuario github
+
+2- Descargar el repo a mi ordenardor local.
+git clone "nombre_proyecto.git"
+
+3- Hacemos los cambios correspondientes, commiteamos y hacemos push para enviar los cambios a nuestro repo remoto.
+
+4- Vamos al repo original, seleccionamos "contribute" y creamos un pull request con un comentario descriptivo.
+
+
+GitFlow: entorno laboral real.
+
+1- Se crea la rama main en donde esta el codigo de produccion, siempre con etiquetas "tag". 
+> git flow init
+
+2- Posteriormente se crea una nueva rama develop que es en donde se desarrolla el programa.
+
+3- Para agregar nuevas caracteristicas o funciones se crean ramas feature, una vez realizadas estas tareas se mergean a la rama develop. 
+> git flow feature start "feature_nombre"
+> git flow feature finish "feature_nombre"
+
+4- Cuando la rama develop tenga las suficientes caracteristicas como para considerarla una nueva version, se crean ramas llamada releases. La cual debemos
+usar para mergear la rama develop cuando querramos cambiar la version del programa.
+> git flow release start 0.1
+> git flow release finish 0.1
+
+5- Cuando la ramas releases estan corregidas, estables y consideramos que pueden salir a produccion la mergearemos con la rama main. Posteriormente crearemos una
+nueva etiquieta "tag" en la rama main.  
+
+6- Cuando existen bugs en la rama main se crean las ramas hotfixes para corregir cambios urgentes. Una vez corregidos los cambios esta rama se debe mergear
+tanto en develop como en main para tener los cambios hechos en ambas ramas. Posteriormente crearemos una
+nueva etiquieta "tag" en la rama main.
+> git flow hotfix start hotfix_num
+> git flow hotfix finish hotfix_num 

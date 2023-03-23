@@ -1,0 +1,107 @@
+******************************************************************	COMANDOS INICIALES
+
+- git init --initial -branch=main > Crea el area de ensayo y el repositorio local en la rama "main".
+   En caso de no tomar el comando --initial main, haremos un git switch -c "main".
+
+- git add * > Selecciona todos los nuevos archivos nuevos o creados que querramos commitear.
+
+- git commit -m "nombre" > Generaa la copia del archivo modificado que querramos guardar.
+
+- git push -u origin main > enviar modificaciones por primera vez, desde el repositorio local a servdir github. Indicando que cree la rama "main" con -u.
+   git push origin "nombre rama"> enviamos modificaciones a la rama especificada del repositorio remoto, si no existe esta rama la crea automaticamente.
+
+******************************************************************	COMANDOS TRABAJANDO EN REPOSITORIO LOCAL
+
+- git status -s > muestra un status de los archivos que hemos agregado/modificado.
+
+- git diff > nos muestra los cambios que hemos realizado sin haber commiteado aún.
+
+- git pull origin "nombre de la rama"> traer modificaciones desde servidor github al repositorio local.
+
+******************************************************************	COMANDOS COMMIT
+
+- git log > muestra listados de los commits hechos y su descripcion.
+   git log  --oneline > muestra resumen de los commits hechos y su descripcion.
+
+- git reset --hard > borra todos los archivos que hemos creado/modificado antes de commitear, volviendo al comienzo del estado actual.
+   git reset --soft HEAD~3 > restauramos el archivo desde el HEAD 3 posiciones hacia atras, manteniendo los archivos creados.
+   git reset --soft HEAD~3 > restauramos el archivo desde el HEAD 3 posiciones hacia atras, pero este borra todo lo que ha creado.
+
+- git tag > nos permite ver las tags existentes.
+
+- git checkout "nombre tag" > ir a un tag especifico.
+
+- git tag -a "nombre version" -m "descripción" "commit" > creamos una nueva version del proyecto derivada de un commit.
+
+- git push origin "nombre version" > enviar tags desde el repositorio local al servidor github.
+
+- git cherry-pick "numero commit" > permite añadir un commit concreto a la rama donde estemos parados.
+
+- git cherry-pick "numero commit^..numero commit" > permite añadir un rango de commits a la rama donde estemos parados. 
+
+
+******************************************************************	COMANDOS PARA TRABAJAR CON RAMAS
+
+- git branch "nombre_rama" > creamos una rama alternativa.
+    git branch -b "nombre_rama" > creamos una rama alternativa y nos movemos a ella.
+
+- git branch > devuelve un listado de las ramas existentes.
+
+- git checkout "nombre_rama" > nos movemos a la rama a la cual indiquemos el nombre correspondiente.
+
+- git branch -d "nombre_rama" > eliminamos una rama seleccionada.
+
+- git merge "nombre_rama" > fusiona dos ramas. Debemos pararnos en la rama principal para mergear la rama que deseemos fusionar, este comando crea un commit
+en la rama principal.
+  git rebase "nombre_rama" > fusiona dos ramas. Debemos pararnos en la rama principal para mergear la rama que deseemos fusionar, este comando NO crea un commit
+en la rama principal.
+
+******************************************************************	COMANDOS STASH (commits temporarios)
+
+- git stash save "nombre"> nos permite almacenar temporalmente los cambios efectuados en el código en el que estás trabajando para que podamos trabajar en otra cosa.
+
+- git stash apply [index] > nos permite volver al stash creado anteriormente, para seguir trabajando donde habiamos dejado. Debemos indicar el numero de stash
+
+- git stash list > nos permite ver la lista de stash creados.
+
+- git stash pop > eliminamos el ultimo stash creado.
+
+- git stash pop [index] > debemos indicar el numero de indice de stash que deseemos eliminar.
+
+
+
+******************************************************************	COMANDOS HISTORAL
+
+- git log --branches~* > ver todos los commits de todas las ramas.
+
+- git checkout "commit" > podemos volver a cualquier commit y sus cambios actuales.
+  git checkout -b "nombre_rama_nueva" > si queremos una version de ese commit pasado debemos crear una rama nueva.
+
+- git revert "nombre_commit" > deshace los cambios de un commit a nivel ficheros, pero estos cambios siguen existiendo en el commit propio. Posterior al revert   debemos
+commitear nuevamente para guardar los cambios hechos.
+
+- git commit -amend > podemos modificar los datos del ultimo commit realizado.
+
+- git clean > nos indica los archivos que no hemos agregado al staging area y nos suguiere eliminarlos.
+  git clean -f > eliminamos todos los archivos que no hemos agregado al staging area.
+  git clean -i > nos permite elegir que archivos que no hemos agregado al staging area deseamos eliminar.
+
+- git reset --soft "nombre_commit" (head)> deshace todos los cambios realizados entre el lugar al que apuntaba HEAD y la confirmación especificada, y 
+guarda todos los cambios en el índice. 
+  git reset --mixed (staging area)> elimina unicamente los ficheros que hemos agregado al stating area pero no esta commiteado.
+  git reset --hard (repo)> elimina todo lo que hemos creado posteriormente al ultimo pull.
+  git reset --hard "nombre commit" > volvemos al commit indicado eliminando todo el historia que habia posteriormente.
+
+******************************************************************	COMANDOS OPCIONALES
+
+- git remote add origin https://github.com/facupaez/CursoGit.git > sube el proyecto local al servidor github.
+
+- git clone https://github.com/facupaez/CursoGit.git "nombre carpeta(opcional)" > clonamos cualquier proyecto desde el servidor remoto github a local.
+
+- git blame "nombre archivo" > nos permite ver la fecha y nombre de quien ha hecho cambios en ese archivo.
+
+- git fetch > permite ver si hay cambios en el repo remoto antes de actualizar mi repo local.
+    git log > permite ver los commits realizados en remoto.
+
+Git ignore: Creamos una carpeta llamada gitignore en nuestro repo local, la cual debemos agregar, commitear y pushear a nuestro repo remoto indicandole con un 
+arhivo .txt lo que deseamos que ignorar en nuestro control de versiones.
